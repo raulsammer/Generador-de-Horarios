@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"> <!-- Importar la fuente Open Sans -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <style>
+
+    header {
+      width: 100%;
+      background-color: #fff; /* Color de fondo blanco */
+      color: #333; /* Color de texto */
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      top: 0; /* Pegar el encabezado en la parte superior */
+      left: 0; /* Pegar el encabezado en la parte izquierda */
+      right: 0; /* Pegar el encabezado en la parte derecha */
+
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Sombra más suave en la parte inferior */
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    nav {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #333; /* Color de enlaces */
+      text-decoration: none;
+      margin-left: 20px;
+      transition: color 0.3s ease; /* Transición suave al cambiar color */
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: #4CAF50; /* Color verde al pasar el mouse */
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #fff; /* Color de fondo blanco */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra alrededor del contenido principal */
+      text-align: center;
+      margin: auto;
+      margin-top: 80px; /* Ajustar el margen superior para evitar que el contenido esté detrás del encabezado */
+    }
+   /* estilos tabs */
+
+    #tabs-container {
+      margin-top: 20px;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: #f2f2f2;
+    }
+
+    button.tablinks {
+      background-color: rgb(255, 255, 255) !important;
+      color: #333 !important;
+      border: none !important;
+      outline: none !important;
+      cursor: pointer !important;
+      padding: 10px 20px !important;
+      border-radius: 8px !important;
+      transition: background-color 0.3s ease !important;
+      margin-bottom: 10px !important;
+    }
+
+    button.tablinks.active {
+      background-color: #4CAF50 !important;
+      color: #fff !important;
+    }
+
+/* Otros estilos... */
+    .modal {
+      display: none; /* Por defecto oculto */
+      position: fixed; /* Fijar la posición */
+      z-index: 1; /* Ubicar encima de todo */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 20% auto; /* Centrar verticalmente */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px; /* Tamaño máximo */
+      border-radius: 8px;
+      text-align: center; /* Centrar el contenido horizontalmente */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Estilos para el botón de cerrar en el modal */
+    #closeModalBtn {
+      display: block;
+      margin: 0 auto; /* Centrar horizontalmente */
+      padding: 10px 20px;
+      border: none;
+      background-color: #4CAF50; /* Color del botón */
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #closeModalBtn:hover {
+      background-color: #45a049; /* Color del botón al pasar el mouse */
+    }
+
+    /* Estilos para el texto dentro del modal */
+    .modal-content p {
+      text-align: left; /* Alinear el texto a la izquierda */
+    }
+
+
+
+
+
+
+
+
+    #selection {
+      display: grid;
+      grid-template-areas: 
+        "carreraLabel mallaLabel"
+        "carreraSelect mallaSelect";
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #selection div {
+      text-align: left; /* Alinea los textos a la derecha */
+    }
+
+    #carreraLabel,
+    #mallaLabel {
+      grid-area: carreraLabel;
+      text-align: left; /* Alinea los textos a la izquierda */
+    }
+
+    #mallaLabel {
+      grid-area: mallaLabel;
+    }
+
+    #carreraSelect {
+      grid-area: carreraSelect;
+    }
+
+    #mallaSelect {
+      grid-area: mallaSelect;
+    }
+
+    #carreraLabel,
+    #mallaLabel {
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    #calendar {
+      width: calc(100% - 40px);
+      height: 970px;
+      margin-top: 40px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #cursoSelect {
+      text-align: left;
+    }
+    
+    #cursoSelect > .course-title {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    
+    .course-details div {
+      margin-bottom: 5px;
+    }
+    
+    .course-details input[type="checkbox"] {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    
+    .course-details label {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+
+    /* Estilos para dispositivos móviles */
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      #calendar {
+        width: calc(100vw - 20px);
+        height: 970px;
+        margin-top: 20px;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+
+    /* Estilos para los tabs */
+
+
+
+
+  </style>
+</head>
+
+<!--
+created by raul sammer quispe lozano (+51 922843198)
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣷⣄⠀⠀⢀⣿⣿⡀⠀⠀⣠⣾⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⣷⣄⡸⠿⠿⠇⣠⣾⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢶⣶⣤⣤⣀⡸⠟⠉⣀⣤⣤⣤⣤⣀⠉⠻⢇⣀⣤⣤⣶⡶⠀⠀
+⠀⠀⠀⠙⢿⣿⡿⠁⣴⣿⣿⣿⣿⣿⣿⣿⣿⣦⠈⢻⣿⡿⠋⠀⠀⠀
+⠀⠀⠀⢀⣀⣹⠁⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠈⣏⣀⣀⠀⠀⠀
+⠰⠶⣿⣿⣿⣿⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣸⣿⣿⣿⠶⠆
+⠀⠀⠀⠈⠉⣹⡄⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⢀⣏⠉⠉⠀⠀⠀
+⠀⠀⠀⣠⣾⣿⣷⣄⠙⢿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣾⣿⣷⣄⠀⠀⠀
+⠀⠀⠾⠿⠛⠛⠉⢹⣷⣄⣀⡉⠉⠉⠉⣀⣠⣾⡏⠉⠛⠛⠿⠷⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⡿⠋⢹⣿⣿⡏⠙⢿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⡿⠋⠀⠀⠈⣿⣿⠁⠀⠀⠙⢿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+</pre>
+-->
+
+<body>
+  <header>
+    <div class="logo">
+      Universidad Ricardo Palma<br>Guia Matrícula
+    </div>
+    <nav>
+      <a href="http://www.linkedin.com/in/raulsammer/" target="_blank" rel="noopener noreferrer">Linkedin Autor</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>GENERADOR DE HORARIO | GUIA MATRICULA URP 2024-1</h2>
+
+    <div id="selection">
+      <div>Carrera:</div>
+      <select id="carreraSelect">
+        <option value="">Seleccionar carrera</option>
+      </select>
+      <div>Malla:</div>
+      <select id="mallaSelect">
+        <option value="">Seleccionar malla</option>
+      </select>
+    </div>
+
+    <div id="tabs-container">
+      <div id="tabs" class="tabs">
+        <!-- Pestañas de ciclos se cargarán dinámicamente aquí -->
+      </div>
+    </div>
+
+    <div id="cursos" class="tabcontent" style="display:none">
+      <div id="cursoSelect">
+        <!-- Aquí se cargarán los cursos dinámicamente -->
+        <div class="course-title"></div>
+        <div class="course-details"><!-- Lista de cursos con checkboxes --></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="calendar"></div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>INSTRUCCIONES DE USO</h2>
+      <p>Para toda la comunidad URP se presenta una herramienta intuitiva y eficiente para diseñar horarios de clases de manera rápida y sencilla. 🎓 <br><br>
+
+        <ul>
+          <li>Simplemente selecciona tus cursos haciendo clic en ellos y visualiza tu horario al instante.</li>
+          <li>Puedes seleccionar cursos de diferentes ciclos y ver si tienes cruces de manera rápida.</li>
+          <li>Experimenta con diversas combinaciones de horarios para encontrar la opción que mejor se adapte a ti.</li><br>
+        </ul>
+        
+
+        Simplifica tu experiencia universitaria y aprovecha al máximo tu tiempo con nuestra herramienta de programación de horarios. ⏰</p>
+      <button id="closeModalBtn">GRACIAS</button>
+    </div>
+  </div>
+  <script>
+
+    // Obtener el modal
+    var modal = document.getElementById('modal');
+
+    // Obtener el botón para cerrar el modal
+    var closeModalBtn = document.getElementById('closeModalBtn');
+
+    // Obtener el elemento span para cerrar el modal
+    var closeSpan = document.getElementsByClassName('close')[0];
+
+    // Mostrar el modal al cargar la página
+    window.onload = function() {
+      modal.style.display = 'block';
+    }
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
+    closeModalBtn.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    // Cerrar el modal al hacer clic en el elemento span
+    closeSpan.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    // Cerrar el modal al hacer clic fuera de él
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        headerToolbar: false,
+        slotMinTime: '06:00:00',
+        slotMaxTime: '24:00:00',
+        dayHeaderContent: function (arg) {
+          const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+          return weekdays[arg.date.getUTCDay()];
+        },
+
+        titleFormat: { year: 'numeric', }, // Cambia el formato aquí
+
+        hiddenDays: [0],
+        allDaySlot: false,
+        displayEventTime: false,
+        events: [] // Los eventos se cargarán dinámicamente
+        
+      });
+
+      calendar.render();
+
+      var cicloSelect = document.getElementById('tabs');
+      var cursoSelect = document.getElementById('cursoSelect');
+      var selectedCheckboxes = {}; // Almacena los checkboxes marcados
+      
+
+      function limpiarCiclosYCurso() {
+        cicloSelect.innerHTML = '';
+        cursoSelect.innerHTML = '';
+        selectedCheckboxes = {}; // Limpiar los checkboxes seleccionados
+        calendar.getEvents().forEach(event => event.remove()); // Limpiar los eventos del calendario
+      }
+
+
+      // Obtener los datos del archivo JSON
+      fetch('cursos.json')
+        .then(response => response.json())
+        .then(data => {
+          var carreraSelect = document.getElementById('carreraSelect');
+          var mallaSelect = document.getElementById('mallaSelect');
+
+          data.carreras.forEach(carrera => {
+            var option = document.createElement('option');
+            option.value = carrera.nombre;
+            option.textContent = carrera.nombre;
+            carreraSelect.appendChild(option);
+          });
+
+          carreraSelect.addEventListener('change', function () {
+            mallaSelect.innerHTML = ''; // Vaciar la lista de mallas curriculares al cambiar la carrera
+            mallaSelect.innerHTML = '<option value="">Seleccionar malla</option>'; // Agregar opción por defecto
+            limpiarCiclosYCurso();
+            selectedCheckboxes = {}; // Limpiar los checkboxes seleccionados
+            calendar.removeAllEvents(); // Eliminar todos los eventos del calendario
+          
+            var carreraSeleccionada = this.value;
+            var mallasCurriculares = data.carreras.find(carrera => carrera.nombre === carreraSeleccionada)?.mallas_curriculares || [];
+          
+            mallasCurriculares.forEach(malla => {
+              var option = document.createElement('option');
+              option.value = malla.nombre;
+              option.textContent = malla.nombre;
+              mallaSelect.appendChild(option);
+            });
+          
+            document.getElementById('tabs').style.display = 'block';
+          });
+
+          mallaSelect.addEventListener('change', function () {
+            limpiarCiclosYCurso();
+            calendar.removeAllEvents(); // Eliminar todos los eventos del calendario
+            var mallaSeleccionada = this.value;
+            var carreraSeleccionada = carreraSelect.value;
+          
+            var carrera = data.carreras.find(carrera => carrera.nombre === carreraSeleccionada);
+            if (carrera) {
+              var malla = carrera.mallas_curriculares.find(malla => malla.nombre === mallaSeleccionada);
+              if (malla && malla.semestres) {
+                var selectCicloHeader = document.createElement('h3');
+                selectCicloHeader.textContent = 'Selecciona el ciclo:';
+
+                // Agregar una clase al elemento h3
+                selectCicloHeader.classList.add('ciclo-header'); 
+              
+                cicloSelect.appendChild(selectCicloHeader);
+              
+                malla.semestres.forEach(semestre => {
+                  var button = document.createElement('button');
+                  button.textContent = 'Ciclo ' + semestre.numero;
+                  button.onclick = function () {
+                    openTab(event, 'cursos');
+                    showCourses(semestre.cursos);
+                  };
+                  cicloSelect.appendChild(button);
+                });
+              }
+            }
+          }); 
+          function showCourses(cursos) {
+              cursoSelect.innerHTML = '';
+          
+              var currentCourseTitle = ''; // Variable para almacenar el título actual del curso
+          
+              cursos.forEach(curso => {
+                  if (curso.title !== currentCourseTitle) {
+                      // Si el título del curso es diferente al actual, mostrarlo y actualizar la variable
+                      currentCourseTitle = curso.title;
+                      var courseTitleDiv = document.createElement('div');
+                      courseTitleDiv.classList.add('course-title');
+                      courseTitleDiv.textContent = currentCourseTitle.split(' - ')[1];
+
+                      cursoSelect.appendChild(courseTitleDiv);
+                  }
+                
+                  var courseDiv = document.createElement('div');
+                
+                  curso.grupos.forEach(grupo => {
+                      grupo.horarios.forEach(horario => {
+                          var checkbox = document.createElement('input');
+                          checkbox.type = 'checkbox';
+                          //Ingeniería Financiera | Prá | Grp: 01 | SGrp: 0 | Miercoles de 6:00 pm a 9:00 | Colán Matute, César Dante
+                          checkbox.value = curso.title.split(' - ')[1] + ' - ' + horario.tipo + ' - ' + ' Grp: ' + grupo.id + ' - ' + ' SGrp: ' + horario.subgrupo +  ' - ' + horario.dia + ' de ' + formatDate(horario.start) + ' a ' + formatDate(horario.end) + ' - ' + horario.profesor;
+                          checkbox.classList.add(curso.id);
+                      
+                          var label = document.createElement('label');
+                          label.textContent = curso.title.split(' - ')[1] + ' - ' + horario.tipo + ' - ' + ' Grp: ' + grupo.id + ' - ' + ' SGrp: ' + horario.subgrupo +  ' - ' + horario.dia + ' de ' + formatDate(horario.start) + ' a ' + formatDate(horario.end) + ' - ' + horario.profesor;
+                      
+                          var groupDiv = document.createElement('div');
+                          groupDiv.appendChild(checkbox);
+                          groupDiv.appendChild(label);
+                      
+                          checkbox.addEventListener('change', function () {
+                              if (checkbox.checked) {
+                                  selectedCheckboxes[checkbox.value] = true;
+                                  showGroupInCalendar(curso.title, grupo, horario);
+                              } else {
+                                  delete selectedCheckboxes[checkbox.value];
+                                  hideGroupFromCalendar(curso.title, grupo, horario);
+                              }
+                          });
+                        
+                          if (selectedCheckboxes[checkbox.value]) {
+                              checkbox.checked = true;
+                          }
+                        
+                          courseDiv.appendChild(groupDiv);
+                        
+                          // Agregar un espacio después de cada grupo de checkboxes
+                          var spacerDiv = document.createElement('div');
+                          spacerDiv.style.marginBottom = '10px'; // Puedes ajustar el valor según tu preferencia
+                          courseDiv.appendChild(spacerDiv);
+                      });
+                  });
+                
+                  cursoSelect.appendChild(courseDiv);
+              });
+          }
+//bloque del calendario
+          function showGroupInCalendar(cursoTitle, grupo, horario) {
+            const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+          
+            const dayIndex = daysOfWeek.indexOf(horario.dia.charAt(0).toUpperCase() + horario.dia.slice(1).toLowerCase());
+          
+            if (dayIndex !== -1) {
+              const startTime = new Date(horario.start).toLocaleTimeString('en-US', { hour12: false });
+              const endTime = new Date(horario.end).toLocaleTimeString('en-US', { hour12: false });
+            
+              // Obtener el título del curso eliminando la parte antes del guion
+              const cursoTitlePart = cursoTitle.split(' - ')[1];
+
+              const title = cursoTitlePart + ' - ' + horario.tipo + ' - ' + ' Grp: ' + grupo.id + ' - ' + ' SGrp: ' + horario.subgrupo + ' - ' + horario.profesor;
+            
+              calendar.addEvent({
+                id: cursoTitle + ' - ' + grupo.id + ' - SGrp: ' + horario.subgrupo + ' - ' + horario.tipo + ' - ' + horario.profesor,
+                groupId: grupo.id,
+                title: title,
+                daysOfWeek: [dayIndex],
+                startTime: startTime,
+                endTime: endTime
+              });
+            
+              calendar.render();
+            }
+          }
+
+          function hideGroupFromCalendar(cursoTitle, grupo, horario) {
+            var eventId = cursoTitle + ' - ' + grupo.id + ' - SGrp: ' + horario.subgrupo + ' - ' + horario.tipo + ' - ' + horario.profesor;
+            var event = calendar.getEventById(eventId);
+            if (event) {
+              event.remove();
+            }
+          }
+
+          function formatDate(dateTime) {
+            var date = new Date(dateTime);
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var formattedTime = hours + ':' + minutes + ' ' + ampm;
+            return formattedTime;
+          }
+        })
+        .catch(error => {
+          console.error('Error al cargar los datos:', error);
+        });
+
+        function openTab(evt, tabName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName('tabcontent');
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = 'none';
+          }
+          tablinks = document.querySelectorAll('.tablinks'); // Utiliza querySelectorAll
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove('active');
+          }
+          evt.currentTarget.classList.add('active'); // Aplica clase activa al tab actual
+          document.getElementById(tabName).style.display = 'block';
+        }
+    });
+
+
+
+
+  </script>
+</body>
+</html>

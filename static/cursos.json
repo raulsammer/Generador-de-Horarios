@@ -1,0 +1,474 @@
+{
+  "carreras": [
+    {
+      "nombre": "Ing. Industrial",
+      "mallas_curriculares": [
+        {
+          "nombre": "Malla 52",
+          "semestres": [
+            {
+              "numero": 1,
+              "cursos": [
+                {
+                  "id": "CU-DISENO-001",
+                  "title": "Diseño",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2024-01-10T09:00:00",
+                          "end": "2024-01-10T10:30:00",
+                          "profesor": "Ing. Laura Pérez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 2,
+              "cursos": [
+                {
+                  "id": "CU-LOGISTICA-001",
+                  "title": "Logística",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Miércoles",
+                          "start": "2024-01-12T11:00:00",
+                          "end": "2024-01-12T12:30:00",
+                          "profesor": "Ing. Carlos Martínez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 3,
+              "cursos": [
+                {
+                  "id": "CU-ELECTRICIDAD-001",
+                  "title": "Electricidad",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Viernes",
+                          "start": "2024-01-14T10:00:00",
+                          "end": "2024-01-14T11:30:00",
+                          "profesor": "Ing. Ana Gómez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 4,
+              "cursos": [
+                {
+                  "id": "CU-PROGRAMACION-001",
+                  "title": "Programación",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "practico",
+                          "dia": "Martes",
+                          "start": "2024-01-16T14:00:00",
+                          "end": "2024-01-16T15:30:00",
+                          "profesor": "Ing. Diego Ramírez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 5,
+              "cursos": [
+                {
+                  "id": "CU-ESTADISTICA-001",
+                  "title": "Estadística",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "taller",
+                          "dia": "Jueves",
+                          "start": "2024-01-18T09:00:00",
+                          "end": "2024-01-18T11:00:00",
+                          "profesor": "Ing. Sofía Vargas",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 6,
+              "cursos": [
+                {
+                  "id": "CU-MANEJO-001",
+                  "title": "Manejo de Proyectos",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2024-01-20T11:00:00",
+                          "end": "2024-01-20T12:30:00",
+                          "profesor": "Ing. Alberto Gutiérrez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 7,
+              "cursos": [
+                {
+                  "id": "CU-ECONOMIA-001",
+                  "title": "Economía",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "practico",
+                          "dia": "Miércoles",
+                          "start": "2024-01-22T09:00:00",
+                          "end": "2024-01-22T10:30:00",
+                          "profesor": "Ing. Carmen Flores",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 8,
+              "cursos": [
+                {
+                  "id": "CU-ADMINISTRACION-001",
+                  "title": "Administración",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Jueves",
+                          "start": "2024-01-24T10:00:00",
+                          "end": "2024-01-24T11:30:00",
+                          "profesor": "Ing. Claudia Sánchez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 9,
+              "cursos": [
+                {
+                  "id": "CU-INGLES-001",
+                  "title": "Inglés",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "taller",
+                          "dia": "Viernes",
+                          "start": "2024-01-26T14:00:00",
+                          "end": "2024-01-26T15:30:00",
+                          "profesor": "Profesor Smith",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 10,
+              "cursos": [
+                {
+                  "id": "CU-CALCULO-001",
+                  "title": "Cálculo",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2024-01-28T09:00:00",
+                          "end": "2024-01-28T10:30:00",
+                          "profesor": "Dr. Juan Rodríguez",
+                          "subgrupo": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nombre": "Malla 42",
+          "semestres": []
+        }
+      ]
+    },
+    {
+      "nombre": "Ing. Informática",
+      "mallas_curriculares": [
+        {
+          "nombre": "Malla 50",
+          "semestres": []
+        },
+        {
+          "nombre": "Malla 52",
+          "semestres": [
+            {
+              "numero": 1,
+              "cursos": [
+                {
+                  "id": "CU-FISICA-123",
+                  "title": "FISICA",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T08:00:00",
+                          "end": "2023-12-27T09:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T15:00:00",
+                          "end": "2023-12-27T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Martes",
+                          "start": "2023-12-28T13:00:00",
+                          "end": "2023-12-28T15:00:00"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "G2",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Sábado",
+                          "start": "2023-12-26T14:00:00",
+                          "end": "2023-12-26T15:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Sábado",
+                          "start": "2023-12-26T15:00:00",
+                          "end": "2023-12-26T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Viernes",
+                          "start": "2023-12-25T13:00:00",
+                          "end": "2023-12-25T15:00:00"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "CU-quimica-123",
+                  "title": "Quimica",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T14:00:00",
+                          "end": "2023-12-27T15:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T15:00:00",
+                          "end": "2023-12-27T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Martes",
+                          "start": "2023-12-28T13:00:00",
+                          "end": "2023-12-28T15:00:00"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "G2",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Miércoles",
+                          "start": "2023-12-26T14:00:00",
+                          "end": "2023-12-26T15:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Miércoles",
+                          "start": "2023-12-26T15:00:00",
+                          "end": "2023-12-26T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Sábado",
+                          "start": "2023-12-25T13:00:00",
+                          "end": "2023-12-25T15:00:00"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 2,
+              "cursos": [
+                {
+                  "id": "CU-MATE-123",
+                  "title": "MATE",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T08:00:00",
+                          "end": "2023-12-27T09:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Lunes",
+                          "start": "2023-12-27T15:00:00",
+                          "end": "2023-12-27T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Martes",
+                          "start": "2023-12-28T13:00:00",
+                          "end": "2023-12-28T15:00:00"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "G2",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Miércoles",
+                          "start": "2023-12-26T14:00:00",
+                          "end": "2023-12-26T15:00:00"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Miércoles",
+                          "start": "2023-12-26T15:00:00",
+                          "end": "2023-12-26T16:00:00"
+                        },
+                        {
+                          "tipo": "taller",
+                          "dia": "Sábado",
+                          "start": "2023-12-25T13:00:00",
+                          "end": "2023-12-25T15:00:00"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "numero": 3,
+              "cursos": [
+                {
+                  "id": "CU-bio-123",
+                  "title": "biologia",
+                  "grupos": [
+                    {
+                      "id": "G1",
+                      "horarios": [
+                        {
+                          "tipo": "teoria",
+                          "dia": "Jueves",
+                          "start": "2023-12-25T14:00:00",
+                          "end": "2023-12-25T16:00:00",
+                          "profesor": "Ing. Lujar Carrion",
+                          "subgrupo": "1"
+                        },
+                        {
+                          "tipo": "practico",
+                          "dia": "Sábado",
+                          "start": "2023-12-25T09:00:00",
+                          "end": "2023-12-25T10:00:00",
+                          "profesor": "Ing. Lujar Carrion",
+                          "subgrupo": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ing. Civil",
+      "mallas_curriculares": []
+    }
+  ]
+}
